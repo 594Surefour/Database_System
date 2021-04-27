@@ -1,0 +1,7 @@
+【Mac】
+1、先安装DBeaver v7.3企业版
+2、停止运行DBeaver，并进入软件安装目录/plugins下。（操作：应用程序 --> 找到DBeaver图标，右键，选择“显示包内容” --> Contents --> Eclipse --> plugins）
+3、“com.dbeaver.ee.runtime_***.jar”和“com.dbeaver.lm.core_**.jar”复制进去替换同名文件
+4、运行DBeaver，输入注册码。“License Manager --> Import --> 将客服提供的注册码复制进去（注册码至少要分2行）”
+
+提供姓名、公司名、邮箱地址给客服，可获取到注册码。

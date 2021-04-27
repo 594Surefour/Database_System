@@ -1,0 +1,7 @@
+1、双击运行安装DBeaver企业版安装包。【已安装忽略】(后缀是.exe是Windows系统的安装包；.dmg是Mac系统的安装包；.gz是Linux系统的安装包)。
+2、下载/解压对应版本的的注册文件。将plugins的2个文件复制替换 安装目录\plugins 的同名文件；
+3、提供姓名、公司名称(无，则默认姓名)、邮箱地址 给客服；
+4、运行DBeaver软件,点击菜单栏的“帮助”-->“DBeaver License Info”-->“License manager”-->“Import”，将客服下发的注册码黏贴进去
+
+
+nfnDYu0Yltou3KysZ+iD/altFJk/rV1Q32ja5W3CC0Q84d29mNy/hlJ3SrdyBEhIe338U3RMqKSEarEPRHiOu3vJGyh+Pkjd9M4oQ1cWIJCS1o5Q93iAIzMWJ6usYrBqgZLxItmZXXHMASVr+pyQAwIf734MB4QNpaY/aXPYa5MWd8TFLFq2/IqgDAOLdReY4MP4fPGqX70l4/iWS4GMDtD3OCR9gA7pwoV9UwDB6PE4VeJMeunE9ORq9XK9jkxnIXAF1A+nTTV9tRvXSQrPWjU08Vz/aerVyWzTP1rltnLn9dG5T7yEnY0T2yhSoB1m2r82sDqPxzOx6J2wPZPlfQ==
