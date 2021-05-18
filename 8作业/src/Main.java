@@ -1,3 +1,4 @@
+//调用
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,26 +28,16 @@ public class Main {
             ex.printStackTrace();
         }
     }
-    public void Select(){
+    public void Procedure(){
         try {
-            Statement stmt1 = con.createStatement();
-            String sql1 = "SELECT CUST_ID, PRODUCT_CD, AVAIL_BALANCE FROM account WHERE AVAIL_BALANCE > 5000\n" +
-                    "ORDER BY AVAIL_BALANCE ASC;";
-            ResultSet res = stmt1.executeQuery(sql1);
+            String call="{call pro_updateAccount()}";
+            CallableStatement callableStatement = con.prepareCall(call);
+            callableStatement.execute();
 
-            while (res.next())
-            {
-                String cust = res.getString(1);
-                String type = res.getString(2);
-                String amount = res.getString(3);
-                System.out.println("cust_id:"+cust+", product_cd:"+type+", avail_balance:"+amount);
-            }
-            System.out.println("查询成功！");
-            res.close();
-            stmt1.close();
+            System.out.println("procedure 调用成功！");
             con.close();
         }catch(SQLException ec){
-            System.out.println("查询失败！");
+            System.out.println("procedure 调用失败！");
             ec.printStackTrace();
         }
     }
@@ -54,6 +45,6 @@ public class Main {
     public static void main(String[] args) {
         Main c = new Main();
         c.getConnection();
-        c.Select();
+        c.Procedure();
     }
 }
