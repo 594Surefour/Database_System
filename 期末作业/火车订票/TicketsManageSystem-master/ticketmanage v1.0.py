@@ -19,7 +19,7 @@ import numpy as np
 
 
 
-HOSTNAME = "127.0.0.1"
+HOSTNAME = "localhost"
 PORT = "3306"
 DATABASE = "ticketsystem"
 USERNAME = "root"

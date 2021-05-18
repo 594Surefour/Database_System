@@ -6,8 +6,7 @@ class SQLdata():
         self.sql=None
     def connect(self):
         try:
-            self.sql=pymysql.Connect(host='localhost', port=3306, user='root', password='123456',\
-                                     database='ZSS', charset='utf8')
+            self.sql=pymysql.Connect(host='localhost', port=3306, user='root', password='123456', database='ZSS', charset='utf8')
         except:
             print("error:连接db失败")
             return None
