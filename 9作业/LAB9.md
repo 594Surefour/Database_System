@@ -112,27 +112,7 @@ AS
 (4) 为TicketInfo表建立一个插入触发器t_insert_ticketinfo，要求在出票信息表中插入某个出票信息（即会员购票）时，会依据memberID的会员折扣，自动计算出票的会员票价finalPrice。
 
 ```mysql
-DROP TRIGGER IF EXISTS t_insert_ticketinfo;
 
-CREATE TRIGGER t_insert_ticketinfo
-AFTER INSERT ON ticketinfo FOR EACH ROW
-BEGIN
-	DECLARE c DECIMAL(2,1);
-	DECLARE pr DECIMAL(6,2) DEFAULT 100;
-	DECLARE money DECIMAL(6,2) DEFAULT 100;
-	
-	SELECT m.discount INTO c
-	FROM memberinfo as m
-	WHERE m.memberID = new.memberID;
-	SELECT p.price INTO pr
-	FROM playinfo as p
-	WHERE p.playID = new.playID;
-	
-	SET money = c * pr;
-	
-	UPDATE ticketinfo SET finalPrice = money;
-	
-END;
 ```
 
  
@@ -154,7 +134,10 @@ END;
  		WHERE t.memberID = new.memberID) as A
  	WHERE f.filmID = A.filmID;
  	
- 	UPDATE filminfo SET filmGrade = (star + new.grade) / 2;
+ 	UPDATE filminfo SET filmGrade = (star + new.grade) / 2
+ 		WHERE filminfo.filmID = (SELECT p.filmID
+ 															FROM playinfo as p
+ 															WHERE p.playID = new.playID);
  	
  END;
  ```
