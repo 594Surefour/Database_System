@@ -14,7 +14,7 @@ class App:
     def __init__(self):
         self.username = "root"
         self.password = "123456"
-        self.sqlname = "school2"
+        self.sqlname = "school"
         self.win = Tk()
         self.win.title("学生信息管理系统")
         self.win.geometry("500x300+50+150")
@@ -45,7 +45,7 @@ class App:
         # self.student_info.delete(0.0, END)
         res = 1
         result = ""
-        num = w
+        num = '\"' + w + '\"'
         db = pymysql.connect(host="localhost", user=self.username, password=self.password, db=self.sqlname)  # 连接数据库
         cursor = db.cursor()  # 创建一个cursor对象（游标）
         sql = "select 密码 from 管理员 where 管理员编号={};".format(num)

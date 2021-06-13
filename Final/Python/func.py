@@ -11,7 +11,7 @@ class App:
     def __init__(self):
         self.username = "root"
         self.password = "123456"
-        self.sqlname = "school2"
+        self.sqlname = "school"
         self.win = Tk()
         self.win.title("学生信息管理系统")
         self.win.geometry("500x300+50+150")
@@ -161,7 +161,7 @@ class App:
     def select_class(self):
         f = ttk.Frame(self.win)
         f.place(x=20, y=60, width=480, height=230)
-        Label(f, text="查询选课信息：", font=("宋体", 16, "bold")).place(x=10, y=0)
+        Label(f, text="查询课程信息：", font=("宋体", 16, "bold")).place(x=10, y=0)
 
         Label(f, text="编号：", font=("宋体", 11, "bold")).place(x=10, y=35, height=25)
         cls_num = ttk.Entry(f)
@@ -202,6 +202,7 @@ class App:
     def select_sdata(self, w):
         self.student_info.delete(0.0, END)
         s_num = w.get()
+        s_num = "\'" + s_num + "\'"
         db = pymysql.connect(host="localhost", user=self.username, password=self.password, db=self.sqlname)  # 连接数据库
         cursor = db.cursor()  # 创建一个cursor对象（游标）
         sql = "select * from 学生 where 学号={};".format(s_num)
@@ -262,14 +263,16 @@ class App:
         Label(f, text="学号：", font=("宋体", 11, "bold")).place(x=10, y=35, height=25)
         s_num = ttk.Entry(f)
         s_num.place(x=60, y=35, width=200, height=25)
-        ttk.Button(f, text="删 除", command=lambda conts=str(s_num): self.delete_func(conts, "学生")).place(x=280, y=35, width=80)
-        #ttk.Button(f, text="删 除", command=lambda w=s_num: self.delete_sdata(w)).place(x=280, y=35, width=80)
+        #ttk.Button(f, text="删 除", command=lambda conts=str(s_num): self.delete_func(conts)).place(x=280, y=35, width=80)
+        ttk.Button(f, text="删 除", command=lambda w=s_num: self.delete_func(w)).place(x=280, y=35, width=80)
         ttk.Button(f, text="返 回", command=f.destroy).place(x=380, y=35, width=80)
 
     def delete_sdata(self,w):
         #self.student_info.delete(0.0, END)
         res = 1
-        s_num = w
+        s_num = w.get()
+        s_num = '\"' + s_num + '\"'
+        print(s_num)
         db = pymysql.connect(host="localhost", user=self.username, password=self.password, db=self.sqlname)  # 连接数据库
         cursor = db.cursor()  # 创建一个cursor对象（游标）
         sql = "delete from 学生 where 学号={};".format(s_num)
@@ -287,9 +290,11 @@ class App:
         db.close()
         return res
 
-    def delete_func(self, controls, t):
-        temp = str(controls[0])
-        print(t, temp)
+    def delete_func(self, w):
+        #self.cls_info.delete(0.0, END)
+        temp = w
+        print(w, temp)
+        print(type(temp))
         res = self.delete_sdata(temp)
         if res:
             messagebox.showinfo("提示", "信息删除成功")
