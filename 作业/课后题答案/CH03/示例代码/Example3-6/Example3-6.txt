@@ -1,0 +1,7 @@
+create table arithmetic_test(int_field int);
+insert into arithmetic_test values(34);
+insert into arithmetic_test values(123);
+insert into arithmetic_test values(1);
+insert into arithmetic_test values(0);
+insert into arithmetic_test values(NULL);
+select int_field,int_field+10,int_field-15,int_field*3,int_field/2,int_field%3 from arithmetic_test;

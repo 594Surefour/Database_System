@@ -1,0 +1,14 @@
+//MySQL客户机Ａ
+set session transaction isolation level repeatable read;
+start transaction;
+select * from account where accountno=999;
+
+//MySQL客户机B
+set session transaction isolation level repeatable read;
+start transaction;
+insert into account values(999,700);
+commit;
+
+//MySQL客户机Ａ
+select * from account where accountno=999;
+insert into account values(999,700);

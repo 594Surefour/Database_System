@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.hibernate.manyToMany">
+<!-- 
+class属性：实体类 
+table属性：哪个表，可以省略，如果不写表名默认就是类的简单名称，一般都会写
+
+
+-->
+    <class name="Student" table="student">
+        <id name="id">
+            <generator class="native" />
+        </id>
+        <property name="name"></property>  
+        <!-- Teacher属性，Set集合
+        表达的是本类与Teaher多对多的关系
+        table属性：中间表
+        key子元素：集合外键，引用当前表主键的那个外键
+         -->
+    <set name="teachers" table="t_teacher_student" inverse="false">
+    <key column="studentId"></key>
+    <many-to-many class="Teacher" column="teacherId" ></many-to-many>
+    </set>
+    </class>
+
+
+
+</hibernate-mapping>

@@ -1,0 +1,4 @@
+select (not 0),(not -5),(!null);
+select (null and null),(null && 1),(-2 && -5),(1 and 0);
+select (null or null),(null or 1),(null || 0),(-8 or 0);
+select (null xor null),(null xor 1),(0 xor 0),(-8 xor 0),(1 xor 1);

@@ -1,0 +1,10 @@
+start transaction;
+insert into account values(444,500);
+select * from account where accountno=444;
+savepoint p1;
+update account set value=value+1000 where accountno=444;
+select * from account where accountno=444;
+rollback to savepoint p1;
+select * from account where accountno=444;
+rollback;
+select * from account where accountno=444;

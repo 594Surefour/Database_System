@@ -1,0 +1,14 @@
+//客户机1
+start transaction;
+update account set value=value+500 where accountno=111;
+
+//客户机2
+use transaction_test;
+update account set value=value+500 where accountno=111;
+
+//客户机1
+commit;
+
+
+//客户机2
+select * from account where accountno=111;

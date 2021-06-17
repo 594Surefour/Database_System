@@ -1,0 +1,162 @@
+﻿【例4-1】计算25的平方根并输出MySQL的版本号。
+SELECT SQRT(25),VERSION();
+【例4-2】检索Users表，查询所有会员的名称、性别和电话号码。
+SELECT U_Name,U_Sex,U_Phone FROM Users;
+【例4-3】检索Users表，查询所有会员的基本资料。
+SELECT * FROM Users;
+【例4-4】检索Orders表，查询订购了书籍的会员号。
+SELECT DISTINCT U_ID FROM Orders;
+【例4-5】检索BookInfo表，按图书出版的日期进行排序。
+SELECT B_ID,B_Name, B_Date FROM BookInfo ORDER BY B_Date DESC;
+【例4-6】检索BookInfo表，按图书类别的升序及图书出版日期的降序进行排序。
+SELECT BT_ID,B_Name, B_Date FROM BookInfo ORDER BY BT_ID,B_Date DESC;
+【例4-7】检索BookInfo表，按图书编号查询前5本图书的信息。
+SELECT B_ID,B_Name FROM BookInfo ORDER BY B_ID LIMIT 5;
+【例4-8】检索BookInfo表，按图书编号检索从第3条记录开始的2条记录的信息。
+SELECT B_ID,B_Name FROM BookInfo ORDER BY B_ID LIMIT 2,2;
+【例4-9】检索BookInfo表，查询会员价大于40元的图书信息。
+SELECT B_ID,B_Name, B_SalePrice FROM BookInfo WHERE B_SalePrice>40;
+【例4-10】检索BookInfo表，查询“清华大学出版社”出版的书名为“ASP.NET网站开发项目化教程”的图书的基本信息。
+SELECT B_Name,B_Author,B_Publisher
+FROM BookInfo
+WHERE B_Name='ASP.NET网站开发项目化教程' AND B_Publisher='清华大学出版社';
+【例4-11】检索BookInfo表，查询图书的会员价格在20元到40元之间的图书信息。
+SELECT B_ID,B_Name, B_SalePrice
+FROM BookInfo
+WHERE B_SalePrice>=20 AND B_SalePrice<=40;
+【例4-12】在Users表中新增一条记录，只输入会员名baip和密码654321，然后检索Users表，查询电话号码为空的会员编号和会员名称。
+SELECT U_ID,U_Name
+FROM Users
+WHERE U_Phone IS NULL;
+【例4-13】检索BookInfo表，查询所有MySQL相关书籍的名称、出版社和会员价格。
+SELECT B_Name,B_Publisher,B_SalePrice      
+FROM BookInfo
+WHERE  B_Name LIKE '%MySQL%';
+【例4-14】检索BookInfo表，查询所有的第2个字为“国”的作者所写图书的书名、作者和出版社信息。
+SELECT B_Name,B_Author,B_Publisher      
+FROM BookInfo
+WHERE B_Author LIKE '_国%';
+【例4-15】检索BookInfo表，查询每个出版社出版的图书的数量。
+SELECT B_Publisher ,COUNT(*) AS 总数 
+FROM BookInfo 
+GROUP BY B_Publisher;
+【例4-16】检索BookInfo表，查询每个出版社图书的最高价格和最低价格。
+SELECT  B_Publisher,MAX(B_MarketPrice) AS 最高价格,MIN(B_MarketPrice) AS 最低价格
+FROM BookInfo
+GROUP BY B_Publisher;
+【例4-17】检索BookInfo表，查询出版图书在2本及2本以上的出版社信息。
+SELECT B_Publisher ,COUNT(*) AS 总数 
+FROM BookInfo 
+GROUP BY B_Publisher
+HAVING COUNT(*)>=2;
+【例4-18】检索BookInfo表，查询出版了2本及2本以上并且价格大于等于50元的图书信息。
+SELECT B_Publisher ,COUNT(*) AS 总数 
+FROM BookInfo 
+WHERE B_MarketPrice>=50
+GROUP BY B_Publisher
+HAVING COUNT(*)>=2;
+【例4-19】检索BookInfo和BookType表，查询每本图书所属的图书类别。
+SELECT B_Name, BookInfo.BT_ID, BT_Name
+FROM BookInfo INNER JOIN BookType 
+ON BookInfo.BT_ID= BookType.BT_ID
+ORDER BY BT_ID;
+【例4-20】检索Users和Orders表，查询订单总价超过100元的会员名、下单时间及订单总价。
+SELECT U.U_Name,O.O_ID, O.O_Time, O.O_TotalPrice
+FROM Users U INNER JOIN Orders O
+ON U.U_ID = O.U_ID
+WHERE O_TotalPrice>100;
+【例4-21】检索OrderDetails、Orders和BookInfo表，查询订单的下单时间及所购图书名。
+SELECT OD.OD_ID,O.O_Time,BI.B_Name 
+FROM OrderDetails OD INNER JOIN Orders O INNER JOIN BookInfo BI
+ON OD.O_ID = O.O_ID AND OD.B_ID=BI.B_ID;
+【例4-22】以左外连接方式查询所有会员的订书情况，在结果集中显示会员编号、会员名称、订单产生时间及订单总价，并按会员编号排序。
+SELECT U.U_ID,U.U_Name, O.O_Time,O.O_TotalPrice
+FROM Users U LEFT OUTER JOIN Orders O 
+ON U.U_ID = O.U_ID
+ORDER BY U_ID;
+【例4-23】以右外连接方式查询所有订单的详细情况，在结果集中显示订单详情号、订单产生时间、订单总价及图书名。
+SELECT OD.OD_ID,OD_Number,BI.B_ID,BI.B_Name 
+FROM OrderDetails OD RIGHT OUTER JOIN BookInfo BI 
+ON OD.B_ID = BI.B_ID;
+【例4-24】在图书类别表BookType中，查询每种图书类别和它的子类别。
+SELECT BT1.BT_Name,BT2. BT_Name
+FROM BookType BT1 INNER JOIN BookType BT2 
+ON BT1.BT_ID=BT2.BT_FatherID;
+【例4-25】要查询BookInfo表中高于“C#基础与案例开发详解”会员价格的图书号、图书名称和图书会员价格，查询后的结果集要求按会员价格降序排列。
+SELECT B2.B_ID,B2.B_Name,B2.B_SalePrice
+FROM BookInfo B1 INNER JOIN BookInfo B2 
+ON B1.B_Name='C#基础与案例开发详解' AND B1.B_SalePrice<B2.B_SalePrice
+ORDER BY B2.B_SalePrice DESC;
+【例4-26】在Orders表和OrderDetails表中使用交叉连接。
+SELECT O.O_ID,OD.OD_ID
+FROM Orders O CROSS JOIN OrderDetails OD;
+【例4-27】查询订购了“ASP.NET网站开发项目化教程”图书的订单详情号、订购数量及图书总价。
+SELECT OD_ID,OD_Number,OD_Price
+FROM OrderDetails
+WHERE B_ID=
+(SELECT B_ID FROM BookInfo WHERE B_Name='ASP.NET网站开发项目化教程');
+【例4-28】查询订单总价小于50元的会员信息。
+SELECT U_ID,U_Name,U_Phone
+FROM Users
+WHERE U_ID IN
+(SELECT U_ID FROM Orders WHERE O_TotalPrice<50);
+【例4-29】查询订购了图书的会员信息。
+SELECT U.U_ID,U.U_Name,U.U_Sex
+FROM Users U
+WHERE EXISTS
+(SELECT * FROM Orders O WHERE O.U_ID=U.U_ID);
+【例4-30】查询订购了图书编号大于3的订单编号及收货人的姓名、地址、邮编。
+SELECT O_ID,O_UserName,O_Address,O_PostCode 
+FROM Orders 
+WHERE O_ID >ANY
+(SELECT O_ID FROM OrderDetails WHERE B_ID>3);
+【例4-31】查询每一类图书会员价格的平均价格，并将结果保存到新表AvgPrice中。
+（1）创建新表AvgPrice。
+CREATE TABLE AvgPrice(B_ID int,Avg_Price float);
+（2）将查询结果插入新表AvgPrice中。
+INSERT INTO AvgPrice
+SELECT BT_ID,AVG(B_SalePrice)FROM BookInfo GROUP BY BT_ID ;
+（3）查看AvgPrice表中记录。
+SELECT * FROM AvgPrice;
+【例4-32】将BookInfo表中“MySQL”类别图书的会员价格修改为市场价格的70%。
+UPDATE BookInfo SET B_SalePrice=B_MarketPrice*0.7
+WHERE 'MySQL'=
+(SELECT BT_Name FROM BookType WHERE BookInfo.BT_ID=BookType.BT_ID);
+【例4-33】删除BookInfo表中“Java”类别图书基本信息。
+DELETE FROM BookInfo 
+WHERE 'Java'=
+(SELECT BT_Name FROM BookType WHERE BookInfo.BT_ID=BookType.BT_ID);
+【例4-34】查询会员表中会员联系方式及订单表中的会员联系方式。
+SELECT U_Name,U_Phone
+FROM Users
+UNION ALL
+SELECT O_UserName,O_Phone
+FROM Orders;
+【例4-35】查询会员表中会员编号、会员名称及电话号码，要求列名以汉字标题显示。
+SELECT U_ID 会员编号,U_Name 会员名称,U_Phone 电话号码 
+FROM Users;
+【例4-36】查询价格最高的图书信息。
+SELECT B_ID,B_Name,B_MarketPrice
+FROM BookInfo
+ORDER BY B_MarketPrice DESC
+LIMIT 1;
+【例4-37】统计每本图书的销量信息。
+SELECT BI.B_ID,BI.B_Name,SUM(OD.OD_Number) 销量
+FROM BookInfo BI LEFT JOIN OrderDetails OD
+ON BI.B_ID=OD.B_ID
+GROUP BY OD.B_ID
+ORDER BY B_ID;
+【例4-38】查询销量为0的图书信息。
+SELECT B_ID,B_Name
+FROM BookInfo BI
+WHERE NOT EXISTS
+(SELECT * FROM OrderDetails OD WHERE OD.B_ID=BI.B_ID);
+【例4-39】查询linli所购图书的信息。
+SELECT BI.B_ID,BI.B_Name
+FROM BookInfo BI INNER JOIN OrderDetails OD
+ON BI.B_ID=OD.B_ID
+WHERE OD.O_ID IN
+(SELECT O.O_ID FROM Orders O INNER JOIN Users U
+ON O.U_ID=U.U_ID
+WHERE U.U_Name=’linli’);
+

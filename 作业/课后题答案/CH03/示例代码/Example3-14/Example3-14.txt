@@ -1,0 +1,14 @@
+create table course_copy like course;
+insert into course_copy select * from course;
+select * from course_copy;
+truncate course_copy;
+select auto_increment from information_schema.tables where table_name='course_copy';
+insert into course_copy values(NULL,'C程序设计',default,'0412893402');
+select * from course_copy;
+
+
+delete from course_copy;
+select * from course_copy;
+select auto_increment from information_schema.tables where table_name='course_copy';
+insert into course_copy values(NULL,'C程序设计',default,'0412893402');
+select * from course_copy;

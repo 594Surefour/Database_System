@@ -1,0 +1,9 @@
+create table number_test(float_field float,double_field double,decimal_field decimal);
+desc number_test;
+
+insert into number_test values(1234.56789, 1234.56789, 1234.56789);
+insert into number_test values(1.234, 1.234, 1.234);
+
+alter table number_test modify float_field float(5,1);
+alter table number_test modify double_field double(5,1);
+alter table number_test modify decimal_field decimal(5,1);

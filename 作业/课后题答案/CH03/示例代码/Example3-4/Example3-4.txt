@@ -1,0 +1,13 @@
+create table year_test(year_field year);
+insert into year_test values(2155);
+insert into year_test values(69);
+select * from year_test;
+
+create table date_test(date_field date);
+insert into date_test values("9999-12-31");
+insert into date_test values('1000/01/01');
+select * from date_test;
+
+show variables like 'time_zone';
+set time_zone='+10:00';
+select * from datetime_test;

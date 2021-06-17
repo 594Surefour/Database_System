@@ -1,0 +1,15 @@
+//MySQL客户机Ａ中SQL语句
+set session transaction isolation level read uncommitted;
+start transaction;
+select * from account where accountno=111;
+
+//MySQL客户机B中SQL语句
+set session transaction isolation level read uncommitted;
+start transaction;
+update account set value=value+800 where accountno=111;
+
+//MySQL客户机Ａ中SQL语句
+select * from account where accountno=111;
+
+//关闭MySQL客户机Ａ与客户机Ｂ
+select * from account where accountno=111;

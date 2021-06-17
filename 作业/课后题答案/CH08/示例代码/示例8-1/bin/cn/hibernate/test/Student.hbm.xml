@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.hibernate.demo">
+<!-- 
+	class属性：实体类 
+	table属性：哪个表，可以省略，如果不写表名默认就是类的简单名称，一般都会写
+-->
+    <class name="Student" table="t_student">
+        <id name="id" type="int" column="id">
+        <!-- 主键生成策略 -->
+            <generator class="native" />
+        </id>
+        <!--  普通属性（数据库中的值类型）-->
+        <property name="name" type="string" column="name" />
+        <property name="age" type="int" column="age" />
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+      "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.hibernate.oneToMany">
+<!-- 
+class属性：实体类 
+table属性：哪个表，可以省略，如果不写表名默认就是类的简单名称，一般都会写
+-->
+    <class name="Employee" table="employee">
+        <id name="id">
+            <generator class="native" />
+        </id>
+        <property name="name"></property>
+       <!-- 
+       department的属性，表示多对一的关系
+       class属性：代表关联的实体内容
+       column属性：代表外键列，表示引用关联对象的主键
+        -->
+       <many-to-one name="department" class="Department" column="departmentId">
+       </many-to-one>
+    </class>
+
+
+
+</hibernate-mapping>

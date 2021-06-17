@@ -1,0 +1,18 @@
+//MySQL客户机Ａ中SQL语句
+set session transaction isolation level read committed;
+start transaction;
+select * from account where accountno=111;
+
+//MySQL客户机B中SQL语句
+set session transaction isolation level read committed;
+start transaction;
+update account set value=value+800 where accountno=111;
+
+//MySQL客户机Ａ中SQL语句
+select * from account where accountno=111;
+
+//MySQL客户机Ｂ中SQL语句
+commit;
+
+//MySQL客户机Ａ中SQL语句
+select * from account where accountno=111;

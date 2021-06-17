@@ -1,0 +1,38 @@
+create database teacher_course;
+use teacher_course;
+create table teacher(
+      teacher_id char(10) primary key,
+      teacher_name varchar(20) not null,
+      teacher_phone char(20) not null
+);
+insert into teacher values('0412893401','张明','13901234567');
+insert into teacher values('0412893402','王小刚','13801823412');
+insert into teacher values('0412893403','李晓梅','13701234567');
+select * from teacher;
+
+
+create table course(
+  course_id int auto_increment primary key,
+  course_name varchar(20),
+  course_hours int default 72,
+  teacher_id char(10) not null,
+  constraint course_teacher_fk foreign key(teacher_id) references teacher(teacher_id)
+);
+insert into course values(NULL,'C程序设计',default,'0412893402');
+insert into course(course_name,teacher_id) values('Java程序设计','0412893401');
+insert into course values(NULL,'MySQL数据库',60,'0412893403');
+
+
+insert into course values(NULL,'组成原理',75,'0412893408');
+
+truncate course;
+insert into course(course_name,course_hours,teacher_id) values
+  ('C程序设计',default,'0412893402'),
+  ('Java程序设计',default,'0412893401'),
+  ('MySQL数据库',60,'0412893403');
+
+
+create table course_hours_72 like course;
+insert into course_hours_72 select * from course where course_hours=72;
+select * from course_hours_72;
+

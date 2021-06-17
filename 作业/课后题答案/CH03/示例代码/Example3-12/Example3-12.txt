@@ -1,0 +1,2 @@
+update course set course_hours=90 where course_name='C≥Ã–Ú…Ëº∆';
+select * from course;
