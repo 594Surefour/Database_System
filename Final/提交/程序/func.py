@@ -22,12 +22,14 @@ class App:
     def views(self):
         Label(self.win, text='学生信息管理系统', font=("宋体", 24, "bold")).place(x=100, y=20, width=300, height=30)
 
-        ttk.Button(self.win, text="插入学生信息", command=self.insert_student).place(x=50, y=100, height=30, width=150)
-        ttk.Button(self.win, text="删除学生信息", command=self.delete_student).place(x=50, y=200, height=30, width=150)
+        ttk.Button(self.win, text="插入学生信息", command=self.insert_student).place(x=50, y=80, height=30, width=150)
+        ttk.Button(self.win, text="查看学生信息", command=self.select_student).place(x=50, y=130, height=30, width=150)
+        ttk.Button(self.win, text="删除学生信息", command=self.delete_student).place(x=50, y=180, height=30, width=150)
+        ttk.Button(self.win, text="学生借阅图书", command=self.insert_book).place(x=50, y=230, height=30, width=150)
         ttk.Button(self.win, text="插入老师信息", command=self.insert_teacher).place(x=300, y=100, height=30, width=150)
-        ttk.Button(self.win, text="查看学生信息", command=self.select_student).place(x=50, y=150, height=30, width=150)
         ttk.Button(self.win, text="查看选课信息", command=self.select_class).place(x=300, y=150, height=30, width=150)
-        ttk.Button(self.win, text="退出系统", command=self.close_win).place(x=350, y=260, height=25, width=100)
+        ttk.Button(self.win, text="添加选课信息", command=self.insert_class).place(x=300, y=200, height=30, width=150)
+        ttk.Button(self.win, text="退出系统", command=self.close_win).place(x=350, y=265, height=25, width=100)
 
     def close_win(self):
         self.win.destroy()
@@ -259,6 +261,7 @@ class App:
         f = ttk.Frame(self.win)
         f.place(x=20, y=60, width=480, height=230)
         Label(f, text="删除学生信息：", font=("宋体", 16, "bold")).place(x=10, y=0)
+        Label(f, text="请教务老师仔细审核所删除学号！慎重使用！", font=("宋体", 16, "bold")).place(x=10, y=100)
 
         Label(f, text="学号：", font=("宋体", 11, "bold")).place(x=10, y=35, height=25)
         s_num = ttk.Entry(f)
@@ -300,6 +303,64 @@ class App:
             messagebox.showinfo("提示", "信息删除成功")
         else:
             messagebox.showerror("提示", "信息删除失败")
+
+        #插入选课信息
+    def insert_class(self):
+        f = ttk.Frame(self.win)
+        f.place(x=20, y=70, width=480, height=230)
+        Label(f, text="添加学生选课信息：", font=("宋体", 16, "bold")).place(x=10, y=0)
+
+        ttk.Label(f, text="学号：").place(x=10, y=40, height=25)
+        stu_num = ttk.Entry(f)
+        stu_num.place(x=80, y=40, width=300, height=25)
+
+        ttk.Label(f, text="课程编号：").place(x=10, y=75, height=25)
+        class_num = ttk.Entry(f)
+        class_num.place(x=80, y=75, width=300, height=25)
+
+        ttk.Label(f, text="意愿值：").place(x=10, y=105, height=25)
+        val = ttk.Entry(f)
+        val.place(x=80, y=105, width=300, height=25)
+
+        controls = [stu_num, class_num, val]
+
+        ttk.Button(f, text="插 入", command=lambda conts=controls: self.insert_func(conts, "选课")).place(x=390, y=150, width=80)
+        ttk.Button(f, text="返 回", command=f.destroy).place(x=390, y=190, width=80)
+
+    def insert_book(self):
+        f = ttk.Frame(self.win)
+        f.place(x=20, y=70, width=480, height=230)
+        Label(f, text="添加学生借阅图书：", font=("宋体", 16, "bold")).place(x=10, y=0)
+
+        ttk.Label(f, text="可借图书编号：").place(x=10, y=40, height=25)
+        book_num = ttk.Entry(f)
+        book_num.place(x=90, y=40, width=150, height=25)
+
+        ttk.Label(f, text="可借副本编号：").place(x=10, y=80, height=25)
+        borrow_num = ttk.Entry(f)
+        borrow_num.place(x=90, y=80, width=150, height=25)
+
+        ttk.Label(f, text="学号：").place(x=10, y=120, height=25)
+        stu_num = ttk.Entry(f)
+        stu_num.place(x=90, y=120, width=150, height=25)
+
+        ttk.Label(f, text="借书日期：").place(x=250, y=40, height=25)
+        s_date = ttk.Entry(f)
+        s_date.place(x=315, y=40, width=150, height=25)
+
+        ttk.Label(f, text="应还日期：").place(x=250, y=80, height=25)
+        end_date = ttk.Entry(f)
+        end_date.place(x=315, y=80, width=150, height=25)
+
+        ttk.Label(f, text="逾期罚款：").place(x=250, y=120, height=25)
+        fine = ttk.Entry(f)
+        fine.place(x=315, y=120, width=150, height=25)
+
+        controls = [book_num, borrow_num, stu_num, s_date, end_date, fine]
+
+        ttk.Button(f, text="插 入", command=lambda conts=controls: self.insert_func(conts, "可借图书")).place(x=390, y=150, width=80)
+        ttk.Button(f, text="返 回", command=f.destroy).place(x=390, y=190, width=80)
+
 
     # 消息主循环
     def run(self):

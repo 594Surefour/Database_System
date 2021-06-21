@@ -5,7 +5,7 @@ import inspect
 import ctypes
 import pymysql
 from tkinter.scrolledtext import ScrolledText
-import func
+import func_stu
 
 class App:
     def __init__(self):
@@ -13,7 +13,7 @@ class App:
         self.password = "123456"
         self.sqlname = "school"
         self.win = Tk()
-        self.win.title("学生信息管理系统-教务管理员版")
+        self.win.title("学生信息管理系统-学生版")
         self.win.geometry("500x300+50+150")
         self.win.resizable(0, 0)
         self.login()
@@ -22,7 +22,7 @@ class App:
     def login(self):
         f = ttk.Frame(self.win)
         f.place(x=20, y=60, width=480, height=230)
-        Label(f, text="登陆本科生信息管理系统：",font=("楷体", 16, "bold")).place(x=10, y=0)
+        Label(f, text="学生登录系统：",font=("楷体", 16, "bold")).place(x=10, y=0)
         Label(f, text="用户名：", background="#708090",font=("宋体", 11, "bold")).place(x=10, y=35, height=25)
         num = ttk.Entry(f)
         num.place(x=60, y=35, width=200, height=25)
@@ -36,6 +36,14 @@ class App:
 
         ttk.Button(f, text="登 陆", command=lambda conts=controls: self.login_func(conts)).place(x=60, y=120, width=80)
         ttk.Button(self.win, text="退出系统", command=self.close_win).place(x=200, y=180, height=26, width=100)
+        result = []
+        for control in controls:
+            res = control.get()
+            # if not res:
+            #     res = "NULL"
+            result.append(res)
+        temp1 = str(result[0])
+        return temp1
 
     def login_data(self, w):
         # self.student_info.delete(0.0, END)
@@ -44,7 +52,7 @@ class App:
         num = '\"' + w + '\"'
         db = pymysql.connect(host="localhost", user=self.username, password=self.password, db=self.sqlname)  # 连接数据库
         cursor = db.cursor()  # 创建一个cursor对象（游标）
-        sql = "select 密码 from 管理员 where 管理员编号={};".format(num)
+        sql = "select 密码 from 学生 where 学号={};".format(num)
         try:
             cursor.execute(sql)
             result = cursor.fetchone()
@@ -61,6 +69,7 @@ class App:
         return result
 
     def login_func(self, controls):
+        #print("username = ",username)
         result = []
         for control in controls:
             res = control.get()
@@ -69,14 +78,15 @@ class App:
             result.append(res)
         temp1 = str(result[0])
         temp2 = str(result[1])
-        print(temp1)
-        print(temp2)
+        #g = temp1
+        #print(temp1)
+        #print(temp2)
         res = self.login_data(temp1)[0]
-        print(res)
+        #print(res)
         if res == temp2:
             messagebox.showinfo("提示", "登陆成功")
             self.win.destroy()
-            func.App()
+            func_stu.App()
         else:
             messagebox.showerror("提示", "登陆失败")
 

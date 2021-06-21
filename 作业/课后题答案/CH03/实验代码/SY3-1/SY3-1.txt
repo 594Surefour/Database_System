@@ -1,7 +1,0 @@
-set character_set_client=latin1;
-use library;
-insert into book values(null,'数据库基础与SQL Server','徐孝凯','清华大学出版社',35.50,default,default);
-select * from book;
-set character_set_client=gbk;
-insert into book values(null,'数据库基础与SQL Server','徐孝凯','清华大学出版社',35.50,default,default);
-select * from book;

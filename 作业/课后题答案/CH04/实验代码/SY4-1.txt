@@ -1,7 +1,0 @@
-题目1
-（1）SELECT sno,sname FROM student;
-（2）SELECT * FROM course WHERE cname='MySQL数据库设计';
-（3）SELECT * FROM course WHERE cname LIKE '%数据库%';
-（4）SELECT COUNT(*) FROM student;
-（5）SELECT * FROM sc ORDER BY grade DESC;
-

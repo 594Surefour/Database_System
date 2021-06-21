@@ -5,10 +5,7 @@ import inspect
 import ctypes
 import pymysql
 from tkinter.scrolledtext import ScrolledText
-
 import func
-from func import *
-
 
 class App:
     def __init__(self):
@@ -16,7 +13,7 @@ class App:
         self.password = "123456"
         self.sqlname = "school"
         self.win = Tk()
-        self.win.title("学生信息管理系统")
+        self.win.title("学生信息管理系统-教务管理员版")
         self.win.geometry("500x300+50+150")
         self.win.resizable(0, 0)
         self.login()
@@ -25,21 +22,20 @@ class App:
     def login(self):
         f = ttk.Frame(self.win)
         f.place(x=20, y=60, width=480, height=230)
-        Label(f, text="登陆本科生信息管理系统：", font=("宋体", 16, "bold")).place(x=10, y=0)
-
-        Label(f, text="用户名：", font=("宋体", 11, "bold")).place(x=10, y=35, height=25)
+        Label(f, text="登陆本科生信息管理系统：",font=("楷体", 16, "bold")).place(x=10, y=0)
+        Label(f, text="用户名：", background="#708090",font=("宋体", 11, "bold")).place(x=10, y=35, height=25)
         num = ttk.Entry(f)
         num.place(x=60, y=35, width=200, height=25)
 
         password = StringVar()
-        Label(f, text="密码：", font=("宋体", 11, "bold")).place(x=10, y=75, height=25)
+        Label(f, text="密码：", background="#708090",font=("宋体", 11, "bold")).place(x=10, y=75, height=25)
         passd = ttk.Entry(f,textvariable=password, show='*')
         passd.place(x=60, y=75, width=200, height=25)
 
         controls = [num, passd]
 
-        ttk.Button(f, text="登 陆", command=lambda conts=controls: self.login_func(conts)).place(x=280, y=35, width=80)
-        ttk.Button(self.win, text="退出系统", command=self.close_win).place(x=350, y=260, height=25, width=100)
+        ttk.Button(f, text="登 陆", command=lambda conts=controls: self.login_func(conts)).place(x=60, y=120, width=80)
+        ttk.Button(self.win, text="退出系统", command=self.close_win).place(x=200, y=180, height=26, width=100)
 
     def login_data(self, w):
         # self.student_info.delete(0.0, END)

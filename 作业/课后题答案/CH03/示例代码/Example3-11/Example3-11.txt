@@ -1,3 +1,0 @@
-replace into teacher values('0412893404','唐明明','13401234567');
-insert into teacher values('0412893404','张明明','18701234567');
-replace into teacher values('0412893404','张明明','18701234567');
