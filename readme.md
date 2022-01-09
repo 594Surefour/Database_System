@@ -73,6 +73,10 @@ b.  学生选课：根据自已意愿值选课
 
 
 
+
+
+
+
 ## 二、数据库概念设计
 
 #### 1.确定实体和属性
@@ -99,6 +103,10 @@ b.  学生选课：根据自已意愿值选课
 #### 2.E-R图
 
 <img src="readme.assets/image-20220109103019885.png" alt="image-20220109103019885" style="zoom: 67%;" />
+
+
+
+
 
 
 
@@ -272,6 +280,8 @@ b.  学生选课：根据自已意愿值选课
 | 学号       | varchar(15)  | 否       |        |        | 主键 | XH001   |
 | 开课编号   | varchar(255) | 否       |        |        | 主键 | KKBB001 |
 | 所投意愿值 | decimal(4,0) | 否       |        |        |      |         |
+
+
 
 
 
@@ -512,6 +522,10 @@ WHERE `班级编号` = 'BJBH005';
 
 
 
+
+
+
+
 ## 五、应用程序设计
 
 #### 1.开发及运行环境介绍
@@ -534,73 +548,77 @@ WHERE `班级编号` = 'BJBH005';
 
  图5-1 登陆界面
 
-<img src="file:////Users/lee/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image001.png" alt="img" style="zoom:50%;" />
+<img src="readme.assets/image-20220109105152717.png" alt="image-20220109105152717" style="zoom:50%;" />
 
 
 
 图5-2 登陆成功界面
 
-<img src="file:////Users/lee/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image002.png" alt="img" style="zoom:50%;" />
+<img src="readme.assets/image-20220109105201902.png" alt="image-20220109105201902" style="zoom:50%;" />
 
  
 
 图5-3 主要操作界面
 
-<img src="file:////Users/lee/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image003.png" alt="img" style="zoom:50%;" />
+<img src="readme.assets/image-20220109105209628.png" alt="image-20220109105209628" style="zoom:50%;" />
 
 
 
 图5-4 学生信息添加界面
 
-<img src="file:////Users/lee/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image004.png" alt="img" style="zoom:50%;" />
+<img src="readme.assets/image-20220109105216865.png" alt="image-20220109105216865" style="zoom:50%;" />
 
 
 
  图5-5 教师信息添加界面
 
-<img src="file:////Users/lee/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image005.png" alt="img" style="zoom:50%;" />
+<img src="readme.assets/image-20220109105223747.png" alt="image-20220109105223747" style="zoom:50%;" />
 
  
 
  图5-6 学生信息查询界面
 
-<img src="file:////Users/lee/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image006.png" alt="img" style="zoom:50%;" />
+<img src="readme.assets/image-20220109105230514.png" alt="image-20220109105230514" style="zoom:50%;" />
 
 
 
 图5-7 课程信息查询界面
 
-<img src="file:////Users/lee/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image007.png" alt="img" style="zoom:50%;" />
+<img src="readme.assets/image-20220109105238127.png" alt="image-20220109105238127" style="zoom:50%;" />
 
  
 
 图5-8 学生信息删除界面
 
-<img src="file:////Users/lee/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image008.png" alt="img" style="zoom:50%;" />
+<img src="readme.assets/image-20220109105244702.png" alt="image-20220109105244702" style="zoom:50%;" />
 
 
 
 图5-9 选课信息插入界面
 
-<img src="file:////Users/lee/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image009.png" alt="img" style="zoom:50%;" />
+<img src="readme.assets/image-20220109105251507.png" alt="image-20220109105251507" style="zoom:50%;" />
 
 
 
 图5-10 添加学生借阅图书界面
 
-<img src="file:////Users/lee/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image010.png" alt="img" style="zoom: 50%;" />
+<img src="readme.assets/image-20220109105256895.png" alt="image-20220109105256895" style="zoom:50%;" />
 
  
 
 图5-11 学生登录界面
 
-<img src="file:////Users/lee/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image011.png" alt="img" style="zoom:50%;" />
+<img src="readme.assets/image-20220109105304913.png" alt="image-20220109105304913" style="zoom:50%;" />
 
  
 
 图5-12 学生功能主要界面
 
-<img src="file:////Users/lee/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image012.png" alt="img" style="zoom:50%;" />
+<img src="readme.assets/image-20220109105310819.png" alt="image-20220109105310819" style="zoom:50%;" />
+
+
+
+
 
 
 
